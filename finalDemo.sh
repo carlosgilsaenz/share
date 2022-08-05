@@ -1,22 +1,18 @@
 #!/bin/bash
 
 # Define Variables
-logfile=$HOME/research/sys_info.log
-
-# Check for research directory. Create it if needed.
-if [ ! -d $HOME/research ]; then
-  mkdir $HOME/research
-fi
-
-# Check for output file. Clear it if needed.
-if [ -f $logfile ]; then
-  >$logfile
-fi
+logfile=/var/log/setup_script.log
 
 # Check if script was run as root. Exit if false.
 if [ $UID -ne 0 ]; then
   echo "Please run this script as root."
   exit
+fi
+
+# Check for output file. Clear it if needed.
+if [ -f $logfile ]; then
+    echo "Clearing setup_script.log file..."
+    >$logfile
 fi
 
 # create timestamp within logfile
